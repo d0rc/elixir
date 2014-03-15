@@ -298,6 +298,19 @@ defmodule EnumTest.List do
     assert Enum.split_while([], fn(_) -> true end) == { [], [] }
   end
 
+  test :prod do
+    assert Enum.prod([]) == 1
+    assert Enum.prod([1]) == 1
+    assert Enum.prod([1, 2, 3]) == 6
+    assert Enum.prod([1, 2, 3.3]) == 6.6
+    assert_raise ArithmeticError, fn ->
+      Enum.sum([{}])
+    end
+    assert_raise ArithmeticError, fn ->
+      Enum.sum([1,{}])
+    end
+  end
+
   test :sum do
     assert Enum.sum([]) == 0
     assert Enum.sum([1]) == 1
@@ -819,6 +832,11 @@ defmodule EnumTest.Range do
 
     range = 1..0
     assert Enum.split_while(range, fn(_) -> true end) == { [1, 0], [] }
+  end
+
+  test :prod do
+    assert Enum.prod(1..1) == 1
+    assert Enum.prod(1..3) == 6
   end
 
   test :sum do
