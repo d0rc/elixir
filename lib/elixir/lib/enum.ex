@@ -1134,6 +1134,22 @@ defmodule Enum do
   end
 
   @doc """
+  Returns the product of all values.
+
+  Raises `ArithmeticError` if collection contains a non-numeric value.
+
+  ## Examples
+
+      iex> Enum.product([1, 2, 3])
+      6
+
+  """
+  @spec product(t) :: number
+  def product(collection) do
+    reduce(collection, 1, &*/2)
+  end
+
+  @doc """
   Returns the sum of all values.
 
   Raises `ArithmeticError` if collection contains a non-numeric value.
